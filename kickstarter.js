@@ -19,16 +19,17 @@ async function kickstart() {
             name: 'projectAuthor',
             message: `Who's the author?`,
             default: 'John Doe'
-        },
-        {
-            type: 'input',
-            name: 'mobileHeaderColor',
-            message: 'What color would you like the mobile header to be? (https://bit.ly/1LX2mtq)',
-            default: '#ff4970'
         }
+        // {
+        //     type: 'input',
+        //     name: 'mobileHeaderColor',
+        //     message: 'What color would you like the mobile header to be? (https://bit.ly/1LX2mtq)',
+        //     default: '#ff4970'
+        // }
     ]);
 
-    const {projectName, projectAuthor, mobileHeaderColor} = questions;
+    // const {projectName, projectAuthor, mobileHeaderColor} = questions;
+    const {projectName, projectAuthor} = questions;
 
     ui.log.write('Removing /docs directory');
     rimraf.sync('./docs');
@@ -66,12 +67,12 @@ async function kickstart() {
 
     const indexFile = fs.readFileSync('./index.html', 'utf8');
 
-    ui.log.write(`Setting mobile header color to ${mobileHeaderColor}`);
-    let newIndex = indexFile.replace(/{{mobileHeaderColor}}/g, mobileHeaderColor);
-    const webpackProdFile = fs.readFileSync('./webpack.prod.js', 'utf8');
+    // ui.log.write(`Setting mobile header color to ${mobileHeaderColor}`);
+    // let newIndex = indexFile.replace(/{{mobileHeaderColor}}/g, mobileHeaderColor);
+    // const webpackProdFile = fs.readFileSync('./webpack.prod.js', 'utf8');
 
     ui.log.write('Setting page title to project name');
-    newIndex = newIndex.replace(/{{projectName}}/g, projectName);
+    newIndex = indexFile.replace(/{{projectName}}/g, projectName);
     const newWebpackProdFile = webpackProdFile.replace(/{{projectName}}/g, projectName);
 
     ui.log.write('Writing new index.html');

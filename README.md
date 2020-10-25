@@ -93,6 +93,16 @@ To preview the production build
 npm run preview
 ```
 
+To preview the production build
+```sh
+npm run preview
+```
+
+To deploy to github pages
+```sh
+npm run deploy
+```
+
 ## FAQ
 
 ### When should I use this starter?
